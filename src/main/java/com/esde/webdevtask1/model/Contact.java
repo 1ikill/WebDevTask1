@@ -11,18 +11,20 @@ public class Contact {
         this.number = number;
     }
 
-    public Contact(String name, String number, int userId){
+    public Contact(String name, String number, int userId) {
         this.name = name;
         this.number = number;
         this.userId = userId;
     }
 
-    public Contact(int contactId, String name, String number, int userId){
+    public Contact(int contactId, String name, String number, int userId) {
         this.contactId = contactId;
         this.name = name;
         this.number = number;
         this.userId = userId;
     }
+
+    public Contact() {}
 
     public int getContactId() {
         return contactId;
@@ -48,4 +50,35 @@ public class Contact {
         return userId;
     }
 
+    @Override
+    public String toString() {
+        return "Contact{" +
+               "contactId=" + contactId +
+               ", name='" + name + '\'' +
+               ", number='" + number + '\'' +
+               ", userId=" + userId +
+               '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Contact contact = (Contact) o;
+
+        if (contactId != contact.contactId) return false;
+        if (userId != contact.userId) return false;
+        if (!name.equals(contact.name)) return false;
+        return number.equals(contact.number);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = contactId;
+        result = 31 * result + name.hashCode();
+        result = 31 * result + number.hashCode();
+        result = 31 * result + userId;
+        return result;
+    }
 }

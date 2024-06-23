@@ -6,7 +6,7 @@
 <fmt:setBundle basename="/text" />
 <html>
 <head>
-    <title>Update username</title>
+    <title>Email verification</title>
 </head>
 <body>
 <form>
@@ -15,14 +15,12 @@
         <option value="ru" ${language == 'ru' ? 'selected' : ''}>Russian</option>
     </select>
 </form>
-<h2><fmt:message key="user.update.h2"/></h2>
-<form action="${pageContext.request.contextPath}/update" method="post">
+<h2><fmt:message key="verify.h2"/></h2>
+<form action="${pageContext.request.contextPath}/verify" method="post">
+    <label for="code"><fmt:message key="verify.code"/></label>
+    <input type="text" id="code" name="code" required>
     <div>
-        <label for="username"><fmt:message key="user.update.name.label"/></label>
-        <input type="text" id="username" name="username" required pattern="\w+" title="Username must only contain letters, numbers and underscores.">
-    </div>
-    <div>
-        <fmt:message key="user.update.submit" var="buttonValue" />
+        <fmt:message key="verify.submit" var="buttonValue" />
         <input type="submit" name="submit" value="${buttonValue}">
     </div>
 </form>

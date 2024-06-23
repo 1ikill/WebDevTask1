@@ -1,15 +1,19 @@
 package com.esde.webdevtask1.service;
+
 import com.esde.webdevtask1.model.Contact;
+import com.esde.webdevtask1.service.exception.ServiceException;
 import java.util.List;
 
 public interface ContactService {
-    List<Contact> getContacts(int userId);
+    List<Contact> getContacts(int userId, int pageNum, int pageSize) throws ServiceException;
 
-    void createContact(String name, String number, int userId);
+    int findNumberOfContacts(int userId) throws ServiceException;
 
-    Boolean updateContactName(String name, String newName, int userId);
+    void createContact(String name, String number, int userId) throws ServiceException;
 
-    Boolean updateContactNumber(String name,String newNumber, int userId);
+    boolean updateContactName(String name, String newName, int userId) throws ServiceException;
 
-    boolean deleteContact(String name, int userId);
+    boolean updateContactNumber(String name,String newNumber, int userId) throws ServiceException;
+
+    boolean deleteContact(String name, int userId) throws ServiceException;
 }

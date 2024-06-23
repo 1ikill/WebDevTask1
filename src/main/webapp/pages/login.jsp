@@ -1,24 +1,34 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="/text" />
 <html>
 <head>
     <title>Login</title>
 </head>
 <body>
-<h2>Login Page</h2>
+<form>
+    <select id="language" name="language" onchange="submit()">
+        <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
+        <option value="ru" ${language == 'ru' ? 'selected' : ''}>Russian</option>
+    </select>
+</form>
+<h2><fmt:message key="login.h2"/></h2>
 <form action="${pageContext.request.contextPath}/login" method="post">
     <div>
-        <label for="email">Email:</label>
+        <label for="email"><fmt:message key="login.email.label"/></label>
         <input type="email" id="email" name="email" required>
     </div>
-    <label for="password">Password:</label>
+    <label for="password"><fmt:message key="login.password.label"/></label>
     <input type="password" id="password" name="password" required>
     <div>
-        <input type="submit" value="submit">
+        <fmt:message key="login.submit" var="buttonValue" />
+        <input type="submit" name="submit" value="${buttonValue}">
     </div>
 </form>
 
-<ul>
-    <li><a href="http://localhost:8080/WebDevTask1_war_exploded/register">Sign Up</a></li>
-</ul>
+<p><a href="register.jsp"><fmt:message key="login.link"/></a></p>
 </body>
 </html>

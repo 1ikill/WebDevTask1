@@ -6,7 +6,7 @@
 <fmt:setBundle basename="/text" />
 <html>
 <head>
-    <title>Update username</title>
+    <title>Upload</title>
 </head>
 <body>
 <form>
@@ -15,14 +15,16 @@
         <option value="ru" ${language == 'ru' ? 'selected' : ''}>Russian</option>
     </select>
 </form>
-<h2><fmt:message key="user.update.h2"/></h2>
-<form action="${pageContext.request.contextPath}/update" method="post">
+<h2><fmt:message key="user.upload.h2"/></h2>
+<form action="${pageContext.request.contextPath}/upload" method="post" enctype="multipart/form-data">
     <div>
-        <label for="username"><fmt:message key="user.update.name.label"/></label>
-        <input type="text" id="username" name="username" required pattern="\w+" title="Username must only contain letters, numbers and underscores.">
+        <label for="image"><fmt:message key="user.upload.image.label"/></label>
+        <input type="file" id="image" name="image">
+        <fmt:message key="user.upload.submit" var="buttonValue" />
+        <input type="submit" name="submit" value="${buttonValue}">
     </div>
     <div>
-        <fmt:message key="user.update.submit" var="buttonValue" />
+        <fmt:message key="user.upload.submit" var="buttonValue" />
         <input type="submit" name="submit" value="${buttonValue}">
     </div>
 </form>
